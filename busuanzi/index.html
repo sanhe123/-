@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://sanhe123.github.io">
-  <title>Tag: node | 三荷的博客</title>
+  <title>为Hexo博客添加访问量统计功能 | 三荷的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,Coder,html,css,css3">
-<meta property="og:type" content="website">
-<meta property="og:title" content="三荷的博客">
-<meta property="og:url" content="https://sanhe123.github.io/tags/node/index.html">
+  <meta name="description" content="前言 博客搭建使用的是Hexo 我使用的主题是 yilia 访问量统计使用的是 不蒜子">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为Hexo博客添加访问量统计功能">
+<meta property="og:url" content="https://sanhe123.github.io/busuanzi/index.html">
 <meta property="og:site_name" content="三荷的博客">
+<meta property="og:description" content="前言 博客搭建使用的是Hexo 我使用的主题是 yilia 访问量统计使用的是 不蒜子">
 <meta property="og:locale" content="Chinese">
+<meta property="og:image" content="https://sanhe123.github.io/images/busuanzi_img/busuanzi_1.png">
+<meta property="og:image" content="https://sanhe123.github.io/images/busuanzi_img/busuanzi_2.png">
+<meta property="og:image" content="https://sanhe123.github.io/images/busuanzi_img/busuanzi_3.png">
+<meta property="og:updated_time" content="2019-08-09T14:47:02.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三荷的博客">
+<meta name="twitter:title" content="为Hexo博客添加访问量统计功能">
+<meta name="twitter:description" content="前言 博客搭建使用的是Hexo 我使用的主题是 yilia 访问量统计使用的是 不蒜子">
+<meta name="twitter:image" content="https://sanhe123.github.io/images/busuanzi_img/busuanzi_1.png">
   
     <link rel="alternative" href="/atom.xml" title="三荷的博客" type="application/atom+xml">
   
@@ -143,62 +151,156 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-busuanzi" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/node-path-resolve/" class="archive-article-date">
-  	<time datetime="2019-07-30T03:51:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/node-path-resolve/">对nodeJS中path.resolve()解读</a>
+    <h1 class="article-title" itemprop="name">
+      为Hexo博客添加访问量统计功能
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/busuanzi/" class="archive-article-date">
+  	<time datetime="2019-08-09T14:02:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>博客搭建使用的是Hexo</li>
+<li>我使用的主题是 yilia</li>
+<li>访问量统计使用的是 <a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">不蒜子</a><a id="more"></a>
+<h2 id="1、在配置文件中添加相关配置"><a href="#1、在配置文件中添加相关配置" class="headerlink" title="1、在配置文件中添加相关配置"></a>1、在配置文件中添加相关配置</h2></li>
+</ul>
+<p><em>注意</em> 是在<strong>主题（themes）</strong>文件夹下的配置文件中进行修改，而不是修改根目录下的配置文件。<br>在themes/yilia/_config.yml 添加属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#是否开启访问量统计功能（不蒜子）</span><br><span class="line">busuanzi:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+
+<p><em>注意</em> 修改配置文件时需要注意空格问题，特别是在属性的冒号后，一定要打上一个空格。</p>
+<h2 id="2、在页面添加统计代码"><a href="#2、在页面添加统计代码" class="headerlink" title="2、在页面添加统计代码"></a>2、在页面添加统计代码</h2><p>直接将下面的代码复制到themes/yilia/layout/_partial/footer.ejs 文件中即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.busuanzi &amp;&amp; theme.busuanzi.enable)&#123; %&gt;</span><br><span class="line">        &lt;!-- 不蒜子统计 --&gt;</span><br><span class="line">        &lt;span id=&quot;busuanzi_container_site_pv&quot;&gt;</span><br><span class="line">                本站总访问量&lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt;次</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">        &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;</span><br><span class="line">        &lt;span id=&quot;busuanzi_container_site_uv&quot; style=&apos;display:none&apos;&gt;</span><br><span class="line">                本站访客数&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;人</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">        &lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>具体放置位置如下图所示：<br><img src="/images/busuanzi_img/busuanzi_1.png" alt="添加位置" title="添加代码"></p>
+<h2 id="3、添加文章访问量"><a href="#3、添加文章访问量" class="headerlink" title="3、添加文章访问量"></a>3、添加文章访问量</h2><p>在themes/yilia/layout/_partial/post/date.ejs开头添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.busuanzi &amp;&amp; theme.busuanzi.enable &amp;&amp; !index)&#123; %&gt;</span><br><span class="line">        &lt;!-- 不蒜子统计 --&gt;</span><br><span class="line">        &lt;span id=&quot;busuanzi_container_page_pv&quot; style=&apos;display:none&apos; class=&quot;&lt;%= class_name %&gt;&quot;&gt;</span><br><span class="line">              &lt;i class=&quot;icon-smile icon&quot;&gt;&lt;/i&gt; 阅读数：&lt;span id=&quot;busuanzi_value_page_pv&quot;&gt;&lt;/span&gt;次</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>具体放置位置如下图所示：<br><img src="/images/busuanzi_img/busuanzi_2.png" alt="添加位置" title="添加代码"></p>
+<p>效果图：<br><img src="/images/busuanzi_img/busuanzi_3.png" alt="效果图" title="效果图"></p>
+<p><em>tips</em><br>本地访问时，显示的访问数据可能会吓你一跳，别惊讶，因为我刚开始都被吓到了，什么时候我的博客这么受欢迎的，我怎么都不知道，等你部署到正式环境上就会发现这一切只是一场梦，仍需继续努力呀，哈哈！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Hexo+GitHub搭建免费个人博客之路</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1、在配置文件中添加相关配置"><span class="toc-number">2.</span> <span class="toc-text">1、在配置文件中添加相关配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、在页面添加统计代码"><span class="toc-number">3.</span> <span class="toc-text">2、在页面添加统计代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、添加文章访问量"><span class="toc-number">4.</span> <span class="toc-text">3、添加文章访问量</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//billts.site/extra_css/gitment.css">
+<style>
+.gitment-footer-container{
+	display:none;
+}
+</style>
+<script src="//billts.site/js/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "Fri Aug 09 2019 22:02:11 GMT+0800",
+  owner: 'sanhe123',
+  repo: 'sanhe123.github.io',
+  oauth: {
+    client_id: 'fc9a11257159cbdb0d3a',
+    client_secret: '1c152244cb0518cbb9ffe66c477159e5de002c4f',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+
+  
 
 
           </div>
@@ -233,9 +335,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

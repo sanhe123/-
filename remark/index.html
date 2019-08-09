@@ -18,7 +18,7 @@
 <meta property="og:locale" content="Chinese">
 <meta property="og:image" content="https://sanhe123.github.io/images/remark_img/remark1.png">
 <meta property="og:image" content="https://sanhe123.github.io/images/remark_img/remark2.png">
-<meta property="og:updated_time" content="2019-07-29T07:20:14.000Z">
+<meta property="og:updated_time" content="2019-08-09T14:01:13.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Hexo使用Gitment评论功能">
 <meta name="twitter:description" content="前言具有评论功能的工具有:1、多说(关闭了) 2、网易云跟帖 3、畅言(需要网站的备案信息) 4、Disqus 5、Gitment。我所应用Gitment的基础是Hexo+yilia主题">
@@ -83,7 +83,9 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/sanhe123" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/f053e88af6ba" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
 			</div>
 		</nav>
@@ -120,7 +122,9 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/sanhe123" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/f053e88af6ba" title="jianshu"><i class="icon-jianshu"></i></a>
 			        
 				</div>
 			</nav>
@@ -183,10 +187,10 @@
 <p>2.修改你应用的主题配置文件<br>我应用的主题是yilia</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gitment_owner: &apos;用户名&apos;      #你的 GitHub ID</span><br><span class="line">gitment_repo: &apos;博客网址&apos;          #存储评论的 repo</span><br><span class="line">gitment_oauth:</span><br><span class="line">  client_id: &apos;f***********a&apos;           #client ID</span><br><span class="line">  client_secret: &apos;1**********************f&apos;       #client secret</span><br></pre></td></tr></table></figure>
 
-<p>以上配置根据使用的主题不同，字段名会略有不同。</p>
-<h2 id="汉化评论工具"><a href="#汉化评论工具" class="headerlink" title="汉化评论工具"></a>汉化评论工具</h2><p>我修改的是themes/yilia/layout/_partil/post/gitment.ejs 文件，<br>具体根据主题不同，可以直接全局搜索Gitment关键字。</p>
+<h2 id="汉化评论工具"><a href="#汉化评论工具" class="headerlink" title="汉化评论工具"></a>汉化评论工具</h2><p>我修改的是themes/yilia/layout/_partil/post/gitment.ejs 文件，<br>也可以直接在编辑器中全局搜索Gitment关键字。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;gitment-ctn&quot;&gt;&lt;/div&gt; </span><br><span class="line"></span><br><span class="line">&lt;!-- 修改css与js文件如下即可--&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;//billts.site/extra_css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;//billts.site/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;!-- end--&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: &quot;&lt;%=page.date%&gt;&quot;,</span><br><span class="line">  owner: &apos;&lt;%=theme.gitment_owner%&gt;&apos;,</span><br><span class="line">  repo: &apos;&lt;%=theme.gitment_repo%&gt;&apos;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &apos;&lt;%=theme.gitment_oauth.client_id%&gt;&apos;,</span><br><span class="line">    client_secret: &apos;&lt;%=theme.gitment_oauth.client_secret%&gt;&apos;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&apos;gitment-ctn&apos;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
+<p><em>*注意问题</em><br>1.添加好gitment并部署后发现网站依旧没有评论功能<br>一般是网站内容没有及时同步，等待几分钟后，强制刷新重试。<br>2.部署后的网站gitment 上方显示 是Not found<br>一般这种情况是你的 OAuth 配置除了问题，请检查主要网址以及授权回调URL是否有误。<br>3.每篇文章都需要先点击初始化评论按钮才可以进行评论<br>4.在gitment的右上角有个Issue Page按钮，如果您的网站有人评论可点击此按钮进行评论的回复。</p>
 
       
 
@@ -390,11 +394,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
