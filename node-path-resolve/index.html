@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>对nodeJS中path.resolve()解读 | 三荷的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对nodeJS中path.resolve()解读">
+<meta property="og:url" content="https://sanhe123.github.io/node-path-resolve/index.html">
+<meta property="og:site_name" content="三荷的博客">
+<meta property="og:description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2019-07-30T05:57:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对nodeJS中path.resolve()解读">
+<meta name="twitter:description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
+  
+    <link rel="alternate" href="/atom.xml" title="三荷的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">三荷的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学着爱一切</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://sanhe123.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node-path-resolve" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/node-path-resolve/" class="article-date">
+  <time datetime="2019-07-30T03:51:35.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对nodeJS中path.resolve()解读
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
+<li>如果你是先看了官网的解释仍不能理解</li>
+<li>如果百度出了几篇解析文章和官网差不多一个意思</li>
+<li>如果你仍然没放弃，恭喜你</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>path.resolve() 方法将路径或路径片段的序列解析为绝对路径。</p>
+<h2 id="单刀直入"><a href="#单刀直入" class="headerlink" title="单刀直入"></a>单刀直入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.console.log(path.resolve());  //E:\self\nodejs\module</span><br><span class="line">2.console.log(path.resolve(&apos;&apos;));  //E:\self\nodejs\module</span><br><span class="line">3.console.log(path.resolve(&apos;.&apos;));  //E:\self\nodejs\module</span><br><span class="line">4.console.log(path.resolve(__dirname));  //E:\self\nodejs\module</span><br><span class="line">5.console.log(path.resolve(&apos;img/icon&apos;,&apos;net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">6.console.log(path.resolve(&apos;./img/icon&apos;,&apos;net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">7.console.log(path.resolve(&apos;img/icon&apos;,&apos;./net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">8.console.log(path.resolve(&apos;./img/icon&apos;,&apos;./net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">9.console.log(path.resolve(&apos;/img/icon&apos;,&apos;net&apos;));  //E:\img\icon\net</span><br><span class="line">10.console.log(path.resolve(&apos;img/icon&apos;,&apos;/net&apos;));  //E:\net</span><br><span class="line">11.console.log(path.resolve(&apos;/img/icon&apos;,&apos;/net&apos;));  //E:\net</span><br><span class="line">12.console.log(path.resolve(&apos;/img/icon&apos;,&apos;../net&apos;));  //E:\img\net</span><br></pre></td></tr></table></figure>
+
+<p>已知条件：我当前工作目录是 E:\self\nodejs\module</p>
+<p>理解技巧：<br>    1. 从右往左依次解析。（这句十分重要）<br>    2. 代码里序号1-4的几种写法会返回当前工作目录。<br>    3. 代码里序号5-8中，’net’ 等价于 ‘./net’ ：是相对路径，假如相对路径片段在最右侧，则需要向前拼接，<br>直到遇到以斜杠（/）开头的参数结束，假如直到解析到第一个参数仍然没有遇到以斜杠开头的，则直接拼接到你当前工作目录。<br>    4. 代码里序号9-11说明的是参数从右至左，遇到第一个以斜杠开头的参数停止解析，无论前面是否还有参数。<br>    5. ‘../net’ 解析之后就是net的上一级拼接net，<br>例如path.resolve(‘/img/icon’,’../net’) ：这里的net和icon是平级的，我们找到net的上一级是img，且img前有斜杠，说明img是根目录，拼接后结果就是（/img/net）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sanhe123.github.io/node-path-resolve/" data-id="cjz44bv240001v8u7bocuux6y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用Hexo+GitHub搭建免费个人博客之路
+        
+      </div>
+    </a>
+  
+  
+    <a href="/remark/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在Hexo使用Gitment评论功能</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/工具/" style="font-size: 20px;">工具</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/hexo/">使用Hexo+GitHub搭建免费个人博客之路</a>
+          </li>
+        
+          <li>
+            <a href="/node-path-resolve/">对nodeJS中path.resolve()解读</a>
+          </li>
+        
+          <li>
+            <a href="/remark/">在Hexo使用Gitment评论功能</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 三荷的博客<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
