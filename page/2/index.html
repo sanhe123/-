@@ -6,20 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://sanhe123.github.io">
-  <title>对nodeJS中path.resolve()解读 | 三荷的博客</title>
+  <title>三荷的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
-<meta name="keywords" content="node">
-<meta property="og:type" content="article">
-<meta property="og:title" content="对nodeJS中path.resolve()解读">
-<meta property="og:url" content="https://sanhe123.github.io/node-path-resolve/index.html">
+  <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,编程,代码,Coder,html,css,css3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="三荷的博客">
+<meta property="og:url" content="https://sanhe123.github.io/page/2/index.html">
 <meta property="og:site_name" content="三荷的博客">
-<meta property="og:description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-07-30T05:57:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对nodeJS中path.resolve()解读">
-<meta name="twitter:description" content="前言 如果你是先看了官网的解释仍不能理解 如果百度出了几篇解析文章和官网差不多一个意思 如果你仍然没放弃，恭喜你">
+<meta name="twitter:title" content="三荷的博客">
   
     <link rel="alternative" href="/atom.xml" title="三荷的博客" type="application/atom+xml">
   
@@ -150,24 +146,21 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-node-path-resolve" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-node-path-resolve" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      对nodeJS中path.resolve()解读
+    <h1 itemprop="name">
+      <a class="article-title" href="/node-path-resolve/">对nodeJS中path.resolve()解读</a>
     </h1>
   
 
         
         
-        <!-- 不蒜子统计 -->
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
 
 <a href="/node-path-resolve/" class="archive-article-date">
   	<time datetime="2019-07-30T03:51:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
@@ -182,14 +175,9 @@
 <li>如果百度出了几篇解析文章和官网差不多一个意思</li>
 <li>如果你仍然没放弃，恭喜你</li>
 </ol>
-<a id="more"></a>
-
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>path.resolve() 方法将路径或路径片段的序列解析为绝对路径。</p>
-<h2 id="单刀直入"><a href="#单刀直入" class="headerlink" title="单刀直入"></a>单刀直入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.console.log(path.resolve());  //E:\self\nodejs\module</span><br><span class="line">2.console.log(path.resolve(&apos;&apos;));  //E:\self\nodejs\module</span><br><span class="line">3.console.log(path.resolve(&apos;.&apos;));  //E:\self\nodejs\module</span><br><span class="line">4.console.log(path.resolve(__dirname));  //E:\self\nodejs\module</span><br><span class="line">5.console.log(path.resolve(&apos;img/icon&apos;,&apos;net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">6.console.log(path.resolve(&apos;./img/icon&apos;,&apos;net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">7.console.log(path.resolve(&apos;img/icon&apos;,&apos;./net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">8.console.log(path.resolve(&apos;./img/icon&apos;,&apos;./net&apos;));  //E:\self\nodejs\module\img\icon\net</span><br><span class="line">9.console.log(path.resolve(&apos;/img/icon&apos;,&apos;net&apos;));  //E:\img\icon\net</span><br><span class="line">10.console.log(path.resolve(&apos;img/icon&apos;,&apos;/net&apos;));  //E:\net</span><br><span class="line">11.console.log(path.resolve(&apos;/img/icon&apos;,&apos;/net&apos;));  //E:\net</span><br><span class="line">12.console.log(path.resolve(&apos;/img/icon&apos;,&apos;../net&apos;));  //E:\img\net</span><br></pre></td></tr></table></figure>
-
-<p>已知条件：我当前工作目录是 E:\self\nodejs\module</p>
-<p>理解技巧：<br>    1. 从右往左依次解析。（这句十分重要）<br>    2. 代码里序号1-4的几种写法会返回当前工作目录。<br>    3. 代码里序号5-8中，’net’ 等价于 ‘./net’ ：是相对路径，假如相对路径片段在最右侧，则需要向前拼接，<br>直到遇到以斜杠（/）开头的参数结束，假如直到解析到第一个参数仍然没有遇到以斜杠开头的，则直接拼接到你当前工作目录。<br>    4. 代码里序号9-11说明的是参数从右至左，遇到第一个以斜杠开头的参数停止解析，无论前面是否还有参数。<br>    5. ‘../net’ 解析之后就是net的上一级拼接net，<br>例如path.resolve(‘/img/icon’,’../net’) ：这里的net和icon是平级的，我们找到net的上一级是img，且img前有斜杠，说明img是根目录，拼接后结果就是（/img/net）</p>
-
+        
+          <a class="article-more-a" href="/node-path-resolve/#more">more >></a>
+        
       
 
       
@@ -211,33 +199,16 @@
       
 
       
+        <p class="article-more-link">
+          <a class="article-more-a" href="/node-path-resolve/">展开全文 >></a>
+        </p>
+      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用Hexo+GitHub搭建免费个人博客之路
-        
-      </div>
-    </a>
-  
-  
-    <a href="/remark/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在Hexo使用Gitment评论功能</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -252,54 +223,95 @@
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单刀直入"><span class="toc-number">3.</span> <span class="toc-text">单刀直入</span></a></li></ol>
-                    </div>
-                </span>
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-remark" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/remark/">在Hexo使用Gitment评论功能</a>
+    </h1>
+  
+
+        
+        
+
+<a href="/remark/" class="archive-article-date">
+  	<time datetime="2019-07-29T06:05:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>具有评论功能的工具有:<br>1、多说(关闭了) 2、网易云跟帖 3、畅言(需要网站的备案信息) 4、Disqus 5、Gitment。<br>我所应用Gitment的基础是Hexo+yilia主题</p>
+        
+          <a class="article-more-a" href="/remark/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/remark/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
             </div>
         </div>
+        
         
     </div>
 </aside>
 
 
 
-  
-  
-  
 
   
-
   
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//billts.site/extra_css/gitment.css">
-<style>
-.gitment-footer-container{
-	display:none;
-}
-</style>
-<script src="//billts.site/js/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "Tue Jul 30 2019 11:51:35 GMT+0800",
-  owner: 'sanhe123',
-  repo: 'sanhe123.github.io',
-  oauth: {
-    client_id: 'fc9a11257159cbdb0d3a',
-    client_secret: '1c152244cb0518cbb9ffe66c477159e5de002c4f',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -334,8 +346,8 @@ gitment.render('gitment-ctn')
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
